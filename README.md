@@ -47,7 +47,7 @@
     Ray freelancing
 
 ##Dependenciesk
-    Meteor, Modinizr, Compass/Sass, (Bootstrap/Foundation), Handlebars
+    Meteor, Modinizr, Compass/Sass, Bootstrap, Handlebars
 
 ##Equipment
     -Speakers
