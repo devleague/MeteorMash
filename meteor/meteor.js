@@ -7,7 +7,7 @@ if (Meteor.isClient) {
 
   Template.hello.greeting = function(){
     var output;
-    navigator.geolocation.watchPosition(foundLocation, noLocation);
+    navigator.geolocation.getPosition(foundLocation, noLocation);
     output = Session.get('loc');
     return Session.get('loc');
   };
