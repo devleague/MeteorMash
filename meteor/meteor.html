@@ -3,11 +3,26 @@
 </head>
 
 <body>
-  {{> hello}}
+  {{> data}}
 </body>
 
 <template name="hello">
   <h1>Hello World!</h1>
   {{greeting}}
-  <input type="button" value="Click" />
+</template>
+
+<template name = "data">
+	
+		<ul>
+			{{> component}}
+		</ul>
+	{{else}}
+		nothing to find
+	<!--API KEY for GMaps AIzaSyAqdbtbbf_utGmNIWecy6K156be9BmMapE -->
+</template>
+
+<template name= "component">
+	<li>
+		{{formatted_address}}
+	</li>
 </template>
