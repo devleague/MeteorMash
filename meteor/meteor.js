@@ -1,15 +1,27 @@
 if (Meteor.isClient) {
+  Session.set('loc','?');
+
   Template.hello.greeting = function () {
     return "Welcome to meteor.";
   };
 
-  Template.hello.events({
-    'click input': function () {
-      // template data, if any, is available in 'this'
-      if (typeof console !== 'undefined')
-        console.log("You pressed the button");
-    }
-  });
+  Template.hello.greeting = function(){
+    var output;
+    navigator.geolocation.watchPosition(foundLocation, noLocation);
+    output = Session.get('loc');
+    return Session.get('loc');
+  };
+
+  function foundLocation(location){
+    console.log(location);
+    Session.set('loc','lat: '+location.coords.latitude +', lon: '+location.coords.longitude);
+ 
+  }
+
+  function noLocation(){
+    alert('no location');
+  }
+
 }
 
 if (Meteor.isServer) {
