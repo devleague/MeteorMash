@@ -1,9 +1,6 @@
 var Songs = new Meteor.Collection('Songs');
 
 if (Meteor.isClient) {
-  Template.hello.greeting = function () {
-    return "Welcome to meteormash.";
-  };
 
   Template.hello.events({
     'click input#addSong': function (event, template) {
@@ -50,19 +47,7 @@ if (Meteor.isClient) {
           if(typeof err !== 'undefined') {
             console.log(err);
         }
-      })
+      });
     }
-  })
-    // Handlebars.registerHelper('songs', function(context, options) {
-    //   var out = '<ul>', data;
-
-    //   for(var)
-    // })
-}
-
-if (Meteor.isServer) {
-  console.log("Server is on")
-  Meteor.startup(function () {
-    // code to run on server at startup
   });
-}
+};
