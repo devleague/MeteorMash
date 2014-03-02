@@ -11,30 +11,53 @@ if (Meteor.isClient) {
       if (typeof console !== 'undefined')
         console.log("You pressed the button");
       var songName = template.find("#songName").value;
-      Songs.insert({'name' : songName});
-      template.find("#songName").value;
+      Songs.insert({'name' : songName, 'counter': 0});
     }
   });
 
   Template.song_list.songs = function() {
-    return Songs.find();
+    return Songs.find({}, {sort: {counter: -1}});
+  //   return [];
   };
 
+  // Template.song_list.sort = function() {
+  //   return Songs.find({}, {sort: {counter: -1}}); 
+  // }
+
   Template.song.events({
-    'clicka#upvote' : function(){
-      var count = 0;
-      count++;
-      console.log(count);
-    },
     'click li' : function() {
       Session.set("is_selected", this._id);
+      console.log('cookies');
     },
-  
-  });
-    Template.song.is_selected = function() {
-      return Session.equals("is_selected", this._id) ? "selected" : "";
+    'click a.upvote' : function(event, template){
+      //console.log("starting find:"+this._id);
+      Songs.upsert(
+        {"_id":this._id},
+        { $inc : {"counter" : 1 }},
+        function(err){
+          if(typeof err !== 'undefined'){
+            console.log(err);
+          }
+        }
+      );
+    },
+    
+    'click a.downvote' : function(event, template) {
+      Songs.upsert(
+        {"_id":this._id},
+        { $inc : {"counter" : -1}},
+        function(err) {
+          if(typeof err !== 'undefined') {
+            console.log(err);
+        }
+      })
+    }
+  })
+    // Handlebars.registerHelper('songs', function(context, options) {
+    //   var out = '<ul>', data;
 
-    };
+    //   for(var)
+    // })
 }
 
 if (Meteor.isServer) {
