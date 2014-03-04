@@ -43,16 +43,17 @@ if (Meteor.isClient) {
       if(this.counter < -10) {
         Songs.remove(this._id);
       } else {
-        Songs.upsert(
-          {"_id":this._id},
-          { $inc : {"counter" : -1}},
-          function(err) {
-            if(typeof err !== 'undefined') {
-              console.log(err);
+      Songs.upsert(
+        {"_id":this._id},
+        { $inc : {"counter" : -1}},
+        function(err) {
+          if(typeof err !== 'undefined') {
+            console.log(err);
             }
           }
         );
-      }  
+      }
     }
   })
+
 };
