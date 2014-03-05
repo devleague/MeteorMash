@@ -1,7 +1,5 @@
 <head>
-	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	  <title>meteor</title>
 
 </head>
@@ -18,7 +16,7 @@
 
   <br />
   {{>song_list}}
-  	{{!--API KEY for GMaps AIzaSyAqdbtbbf_utGmNIWecy6K156be9BmMapE --meteor}}
+  	{{!--API KEY for GMaps AIzaSyAqdbtbbf_utGmNIWecy6K156be9BmMapE --meteor--}}
 </template>
 
 <template name="song_list">
@@ -37,4 +35,8 @@
   <p>{{counter}}</p>
   <a class='upvote' id='{{_id}}'>Upvote!</a>
   <a class='downvote' id='downvote_{{_id}}'>Downvote!</a>
+</template>
+
+<template name="data">
+	{{components}}
 </template>

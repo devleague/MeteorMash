@@ -1,8 +1,39 @@
 var Songs = new Meteor.Collection('Songs');
 
 if (Meteor.isClient) {
+  // var lattitude = location.coords.lattitude;
+  // var lon = location.coords.longitude;
+  Session.set('loc','?');
 
-  Template.hello.events({
+  Template.meteor.rendered = function(){
+    var output;
+    navigator.geolocation.getCurrentPosition(foundLocation, noLocation);
+    output = Session.get('loc');
+    return Session.get('loc');
+  };
+
+  function foundLocation(location){
+    Session.set('lat',location.coords.latitude);
+    Session.set('lon',location.coords.longitude);
+
+    
+  }
+
+  function noLocation(){
+    alert('no location');
+  }
+  // Template.form.data(){
+  //   var "https://maps.googleapis.com/maps/api/geocode/json?latlng="+Session.get('lat')+","+Session.get('lon')+"&sensor=false&key=AIzaSyAqdbtbbf_utGmNIWecy6K156be9BmMapE"
+  // }]
+  var locationUrl  = "https://maps.googleapis.com/maps/api/geocode/json?latlng="+Session.get('lat')+","+Session.get('lon')+"&sensor=false&key=AIzaSyAqdbtbbf_utGmNIWecy6K156be9BmMapE";
+
+  Meteor.http.call("post", locationUrl, function(err, location){
+    console.log(location.data.results[4].formatted_address);
+    Template.data.components = function(){
+      return location.data.results[4].formatted_address;
+    }
+  });
+ Template.meteor.events({
     'click input#addSong': function (event, template) {
       // template data, if any, is available in 'this'
       if (typeof console !== 'undefined')
@@ -50,4 +81,13 @@ if (Meteor.isClient) {
       });
     }
   });
-};
+}
+
+if (Meteor.isServer) {
+  Meteor.startup(function () {
+    Meteor.methods({checkGeo: function(){
+      this.unblock();
+ 
+    }});  
+  });
+}
