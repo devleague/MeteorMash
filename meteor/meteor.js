@@ -30,13 +30,11 @@ if (Meteor.isClient) {
   //   var "https://maps.googleapis.com/maps/api/geocode/json?latlng="+Session.get('lat')+","+Session.get('lon')+"&sensor=false&key=AIzaSyAqdbtbbf_utGmNIWecy6K156be9BmMapE"
   // }]
   var locationUrl  = "https://maps.googleapis.com/maps/api/geocode/json?latlng="+Session.get('lat')+","+Session.get('lon')+"&sensor=false&key=AIzaSyAqdbtbbf_utGmNIWecy6K156be9BmMapE";
-  console.log(locationUrl);
-  console.log(Session.get("lat"));
-  console.log(Session.get("lon"));
+
   Meteor.http.call("post", locationUrl, function(err, location){
-    console.log(location)
+    console.log(location.data.results[4].formatted_address);
     Template.data.components = function(){
-      return location.data.results;
+      return location.data.results[4].formatted_address;
     }
   });
 
