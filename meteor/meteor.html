@@ -1,24 +1,40 @@
 <head>
-  <title>meteor</title>
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"></script>
+	  <title>meteor</title>
+
 </head>
 
 <body>
-  {{> data}}
+  {{>meteor}}
 </body>
 
-<template name="hello">
-  <h1>Hello World!</h1>
-  {{greeting}}
+
+<template name="meteor">
+  <h1>MeteorMash</h1>
+  <input type="text" id='songName' value='Add Request!' />
+  <input type="button" id='addSong' value="Click"  />
+
+  <br />
+  {{>song_list}}
+  	{{!--API KEY for GMaps AIzaSyAqdbtbbf_utGmNIWecy6K156be9BmMapE --meteor}}
 </template>
 
-<template name = "data">
-	
+<template name="song_list">
+  {{#each songs}}
+    <ul>
+      {{> song}}
+    </ul>
 
-	{{!API KEY for GMaps AIzaSyAqdbtbbf_utGmNIWecy6K156be9BmMapE}}
+  {{else}}
+    No songs in queue for party!
+  {{/each}}
 </template>
 
-<template name= "component">
-	<li>
-		{{formatted_address}}
-	</li>
+<template name="song">
+  <li class='{{is_selected}}'>{{name}}</li>
+  <p>{{counter}}</p>
+  <a class='upvote' id='{{_id}}'>Upvote!</a>
+  <a class='downvote' id='downvote_{{_id}}'>Downvote!</a>
 </template>
