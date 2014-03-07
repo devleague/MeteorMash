@@ -1,127 +1,249 @@
+// Session for 'songCursor' = page
 Session.setDefault('songCursor', 0);
+
+// Initiates manage session //
 Meteor.autorun(function(){
+
+  // import published docs. from server //
   Meteor.subscribe("songs",Session.get('songCursor'));
   Meteor.subscribe("counts");
+
 });
 
-Meteor.startup(function(){
+// On start up watches songlist and gets geo-location //
+Meteor.startup (function() {
+
   // Session.set('loc','?');
   // var output;
   // output = Session.get('loc');
   // navigator.geolocation.getCurrentPosition(foundLocation, noLocation);
-  var songList = Songs.find({}, {sort: {counter:-1}});
-  songList.observe({
-    added: function (document) {
 
-    }, // Use either added() OR(!) addedAt()
-    removed: function (oldDocument) {
-      // ...
-    }, // Use either removed() OR(!) removedAt()
-    movedTo: function (document, fromIndex, toIndex, before) {
-      if(toIndex == 0){
-        Songs.update({_id: document._id}, { $set : {"nowPlaying": true}},function(err){
-          console.log(err);
-        });
-        console.log(document);
-      };
-    }
-  });
+  // Cursor of song collection //
+  var songList = Songs.find( {}, {sort: { counter:-1 } });
+  
+  // songList.observe ({
+    
+  //   added: function (document) {
 
-})
+  //   }, // Use either added() OR(!) addedAt()
 
-function foundLocation(location){
+  //   removed: function (oldDocument) {
+
+  //   }, // Use either removed() OR(!) removedAt()
+
+  //   movedTo: function (document, fromIndex, toIndex, before) {
+
+  //     if (toIndex == 0) {
+
+  //       Songs.update( { _id : document._id }, { $set : { "nowPlaying" : true } }, function (err) {
+          
+  //         console.log(err);
+
+  //       });
+
+  //       console.log(document);
+  //     }
+
+  //   }
+
+  // });
+
+});// ends meteor.startup
+
+
+
+// Sets session if location found //
+function foundLocation (location) {
+
+  // coordinates of user //
   Session.set('lat',location.coords.latitude);
   Session.set('lon',location.coords.longitude);
+
+  // Sets url to send to google //
   var locationUrl  = "https://maps.googleapis.com/maps/api/geocode/json?latlng="+Session.get('lat')+","+Session.get('lon')+"&sensor=false&key=AIzaSyAqdbtbbf_utGmNIWecy6K156be9BmMapE";
 
-  Meteor.http.call("post", locationUrl, function(err, location){
-    Template.data.components = function(){
-      console.log("google");
-      return location.data.results[4].formatted_address;
-    }
-  });
-}
+  // POSTING geolocation //
+  Meteor.http.call("post", locationUrl, function (err, location) {
 
-function noLocation(){
+   // Renders location //
+    Template.data.components = function () {
+
+      console.log("google");
+
+      return location.data.results[4].formatted_address;
+
+    };
+
+  });
+
+}// ends foundLocation
+
+
+// else noLocation found user denied access //
+function noLocation () {
+  
   alert('no location');
+
 }
 
 // Template.count.counter = function(){
 
 // }
-Template.songList.songs = function(){
-  return Songs.find({},{sort:{counter:-1}});
-}
 
-Template.songList.nextText=function(){
-  return (Number(Session.get('songCursor')) + 10) + " - " + (Number(Session.get('songCursor')) + 20) 
+// Renders published songs //
+Template.songList.songs = function () {
 
-}
 
-Template.songList.previousText=function(){
-  if(Number(Session.get("songCursor"))< 10){
+  return Songs.find( {}, { sort: { counter: -1 } });
+
+};// ends Template.songList.songs
+
+
+// Renders Pagination for the next button //
+Template.songList.nextText = function () {
+
+  // Shows next 20 for user navigation //
+  return ( Number( Session.get( 'songCursor' ) ) + 10 ) + " - " + ( Number( Session.get( 'songCursor' )) + 20);
+
+};// ends Template.songList.nextText
+
+
+// Renders pagination for previous button //
+Template.songList.previousText = function () {
+
+  // Checks if the collection is empty //
+  if( Number( Session.get( "songCursor" )) < 10) {
+    
+    // show nothing //
     return '';
-  }
-  return (Number(Session.get('songCursor')) - 10) + " - " + (Number(Session.get('songCursor'))) 
-}
 
-Template.navbar.events({
+  }
+
+  // else if there is, show the previous 10 //
+  return ( Number( Session.get( 'songCursor' )) - 10) + " - " + ( Number( Session.get( 'songCursor' ) ));
+
+};// ends Template.songList.previousText
+
+
+// Even listener for button click //
+Template.navbar.events ({
+
+  // When clicked song is sent to mongo //
   'click #addSong': function (event, template) {
-    // template data, if any, is available in 'this'
-    var songName = template.find("#songName").value;
-    Songs.insert({'name' : songName, 'counter': 0});
+
+    // template data, if any, is available in 'this' //
+    var songName = template.find( "#songName" ).value;
+
+    Songs.insert( { 'name' : songName, 'counter': 0 } );
+  
   }
-});
+
+});// ends Template.navbar.events
 
 
-Template.songList.events({
-  'click .previous': function(evt, tmpl){
-    if(Number(Session.get('songCursor')) > 9){
-       Session.set('songCursor', Number(Session.get('songCursor')) - 10);
+// Event listener to render songs for pagination //
+Template.songList.events ({
+
+  // Show previous 10 songs //
+  'click .previous': function (evt, tmpl) {
+
+    if ( Number( Session.get( 'songCursor' ) ) > 9 ) {
+       
+       Session.set('songCursor', Number( Session.get( 'songCursor' ) ) - 10);
+    
     }
+
   },
 
-  'click .next': function(evt, tmpl){
-    Session.set('songCursor', Number(Session.get('songCursor')+10));
+  // Show next 10 songs //
+  'click .next' : function (evt, tmpl) {
+
+    Session.set( 'songCursor' , Number( Session.get( 'songCursor' ) + 10 ));
+
   }
 
-})
+});// ends Template.songList.events
 
-Template.song.events({
 
+// Listening for upvotes //
+Template.song.events ({
+
+  // Clicked set session //
   'click li' : function() {
-    Session.set("is_selected", this._id);
-    console.log('cookies');
+
+    Session.set( "is_selected" , this._id );
+
+    //console.log('cookies');
+
   },
 
-  'click a.upvote' : function(event, template){
+  // When clicked counter increases //
+  'click a.upvote' : function (event, template) {
+
     //console.log("starting find:"+this._id);
-    Songs.upsert(
-      {"_id":this._id},
-      { $inc : {"counter" : 1 }},
-      function(err){
-        if(typeof err !== 'undefined'){
+
+    // updates mongo //
+    Songs.upsert (
+
+      { "_id" : this._id },
+
+      // mongo increment //
+      { $inc : { "counter" : 1 } },
+
+      // Handle errors //
+      function (err) {
+
+
+        if ( typeof err !== 'undefined' ) {
+          
           console.log(err);
+
         }
+
       }
+
     );
 
   },
   
-  'click a.downvote' : function(event, template) {
-    if(this.counter <= -9) {
+  // When downvoted decrease counter //
+  'click a.downvote' : function ( event, template ) {
+
+    // Downvoted removes song from mongo //
+    if ( this.counter <= -9 ) {
+
+      // mongo remove by id //
       Songs.remove(this._id);
-    } else {
+
+    }
+
+    else
+
+      {
+        
+        // Updates mongo //
         Songs.upsert(
-          {"_id":this._id},
-          { $inc : {"counter" : -1}},
-          function(err) {
-            if(typeof err !== 'undefined') {
+
+          { "_id" : this._id },
+          
+          // Decrease vote counter //
+          { $inc : { "counter" : -1 } },
+          
+          // Handle errors //
+          function (err) {
+
+            if ( typeof err !== 'undefined' ) {
+
               console.log(err);
               
             }
+
           }
+
         );
+
       }
+
     }
-})
+
+});// ends Template.songs.events
