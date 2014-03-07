@@ -1,0 +1,10 @@
+/* CSS declarations go here */
+#songList{
+	height: 600px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.nowPlaying{
+	background-color: red;
+}

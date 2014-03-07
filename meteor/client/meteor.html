@@ -1,0 +1,91 @@
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <title>meteor</title>
+
+</head>
+
+<body>
+  
+  {{> navbar}}
+  {{> songList}}
+  {{> where}}
+
+</body>
+
+
+<template name="songList">
+  
+  <div class="container">
+    <div class="row text-center" >
+      <ul id="songList">
+        {{#each songs}}
+          {{> song}}
+        {{else}}
+           <p id="noSongs"> No songs in queue for party! </p>
+        {{/each}}
+      </ul>
+    </div>
+    <ul class="pager">
+      <li class="previous"><a href="#">{{previousText}}&larr; </a></li>
+      <li class="next"><a href="#">{{nextText}}&rarr; </a></li>
+    </ul>
+
+  </div>
+  <!-- {{!--API KEY for GMaps AIzaSyAqdbtbbf_utGmNIWecy6K156be9BmMapE --}} -->
+</template>
+<template name="count">
+  
+</template>
+<template name="song">
+  <div class="song">
+    <li class='{{is_selected}}'>{{name}}</li>
+    <p>{{counter}}</p>
+    <a class='upvote' id='{{_id}}'>Upvote!</a>
+    <a class='downvote' id='downvote_{{_id}}'>Downvote!</a>
+  </div>
+</template>
+
+<template name="where">
+    {{components}}
+</template>
+
+<template name="navbar">
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      {{!-- Brand and toggle get grouped for better mobile display --}}
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Meteor Mash</a>
+      </div>
+
+      {{!-- Collect the nav links, forms, and other content for toggling --}}
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="navbar-form navbar-left" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" id="songName" placeholder="Add Request!">
+          </div>
+          <button id="addSong" class="btn btn-default">Click</button>
+        </div>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">Link</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>{{!-- /.navbar-collapse --}}
+    </div>{{!-- /.container-fluid --}}
+  </nav>
+</template>
