@@ -131,15 +131,47 @@ Template.navbar.events ({
   // When clicked song is sent to mongo //
   'click #addSong': function (event, template) {
 
+    event.preventDefault();
+
     // template data, if any, is available in 'this' //
     var songName = template.find( "#songName" ).value;
 
     Songs.insert( { 'name' : songName, 'counter': 0 } );
-  
+
+    return false;
+  },
+
+  'submit #loginform': function (event, template) {
+    event.preventDefault();
+    var partyname = template.find('#partyName').value;
+    var password = template.find('#partyPassword').value;
+    Meteor.loginWithPassword(partyname,password,function(err){
+      console.log(err);
+    });
   }
 
 });// ends Template.navbar.events
 
+// Template.register.events({
+//   'submit #register-form': function(event, template){
+//     event.preventDefault();
+//     var partyName = template.find('#account-partyName').value;
+//     var partyPass = template.find('#account-partyPass').value;
+//     var partyEmail = template.find('#account-email').value;
+//     Accounts.createUser({
+//       username: partyName,
+//       password: partyPass,
+//       email: partyEmail,
+//     }, function (error) {
+//       if(error){
+//         //inform the user failed
+//       }else{
+
+//       }
+//     });
+//     return false;
+//   }
+// });
 
 // Event listener to render songs for pagination //
 Template.songList.events ({
@@ -178,9 +210,7 @@ Template.song.events ({
   },
 
   // When clicked counter increases //
-  'click a.upvote' : function (event, template) {
-
-    //console.log("starting find:"+this._id);
+  'click button.upvote' : function(event, template){
 
     // updates mongo //
     Songs.upsert (
@@ -207,7 +237,7 @@ Template.song.events ({
   },
   
   // When downvoted decrease counter //
-  'click a.downvote' : function ( event, template ) {
+  'click button.downvote' : function(event, template) {
 
     // Downvoted removes song from mongo //
     if ( this.counter <= -9 ) {
@@ -247,3 +277,10 @@ Template.song.events ({
     }
 
 });// ends Template.songs.events
+
+
+Template.user_loggedout.events({
+  "click #login": function(e, tmpl){
+    Meteor.login
+  }
+});

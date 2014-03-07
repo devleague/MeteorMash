@@ -10,3 +10,5 @@ http
 bootstrap-3
 accounts-ui-bootstrap-dropdown
 npm
+accounts-base
+accounts-password
