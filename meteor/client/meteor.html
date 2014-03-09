@@ -1,0 +1,126 @@
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <title>meteor</title>
+
+</head>
+
+<body>
+  
+  {{> navbar}}
+  {{> songList}}
+  {{> where}}
+
+
+</body>
+
+
+<template name="songList">
+  
+  <div class="container">
+    <div class="row text-center" >
+      <ul id="songList">
+        {{#each songs}}
+          {{> song}}
+        {{else}}
+           <p id="noSongs"> No songs in queue for party! </p>
+        {{/each}}
+      </ul>
+    </div>
+    <ul class="pager">
+      <li class="previous"><a href="#">{{previousText}}&larr; </a></li>
+      <li class="next"><a href="#">{{nextText}}&rarr; </a></li>
+    </ul>
+
+  </div>
+  <!-- {{!--API KEY for GMaps AIzaSyAqdbtbbf_utGmNIWecy6K156be9BmMapE --}} -->
+</template>
+
+<template name="song">
+  <div class="song">
+    <li class='{{is_selected}}'>{{name}}</li>
+    <p>{{counter}}</p>
+    <button class='upvote' id='{{_id}}'>Upvote!</button>
+    <button class='downvote' id='downvote_{{_id}}'>Downvote!</button>
+  </div>
+</template>
+
+<template name="where">
+    {{components}}
+</template>
+
+<template name="navbar">
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      {{!-- Brand and toggle get grouped for better mobile display --}}
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Meteor Mash</a>
+      </div>
+
+      {{!-- Collect the nav links, forms, and other content for toggling --}}
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <form class="navbar-form navbar-left" role="search" id="loginform" action="action">
+          <div class="form-group">
+            <input type="text" class="form-control" id="songName" placeholder="Add Request!">
+            <button id="addSong" type="submit" class="btn btn-default">Click</button>
+          </div>
+        </form>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">{{> userinfo}}</a></li>
+        </ul>
+      </div>{{!-- /.navbar-collapse --}}
+    </div>{{!-- /.container-fluid --}}
+  </nav>
+
+  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">Login</h4>
+        </div>
+        <div class="modal-body">
+          <form id="login-form" action="action">
+            <div>
+               <input type="text" id="partyName" placeholder="Party Name"/>
+               <input type="password" id="partyPassword" placeholder="Password" />
+               <input type="submit" id="create-account" value="Create an Account" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="userinfo">
+  {{#if currentUser}}
+    {{> user_loggedin}}
+  {{else}}
+    {{> user_loggedout}}
+  {{/if}}
+</template>
+
+<template name="userloggedin">
+  {{#if loggingIn}}
+    <li><a>Logging in.. </a></li>
+  {{else}}
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown"> {{currentUser.profile.login}} <b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <li><a id="logout">Log out</a></li>
+        <li class="divider"></li>
+      </ul>
+    </li>
+  {{/if}}
+</template>
+
+<template name="user_loggedout">
+  <li><button data-toggle="modal" data-target="#loginModal" id="login">Party Login </button></li>
+</template>

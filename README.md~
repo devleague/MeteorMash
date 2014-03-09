@@ -46,8 +46,8 @@
     Kingtak working on geolocation
     Ray freelancing
 
-##Dependenciesk
-    Meteor, Modinizr, Compass/Sass, Bootstrap, Handlebars
+##Dependencies
+    Meteor, Modinizr, Compass/Sass, (Bootstrap/Foundation), Handlebars
 
 ##Equipment
     -Speakers
@@ -59,4 +59,4 @@
     keep meteor notes for talk on the 6th
     clean git workflow (push to development branch)
     clean code
-    keep the design document up to date.
+    
