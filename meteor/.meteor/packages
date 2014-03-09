@@ -12,3 +12,5 @@ accounts-ui-bootstrap-dropdown
 npm
 accounts-base
 accounts-password
+bootstrap
+iron-router

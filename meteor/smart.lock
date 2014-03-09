@@ -4,7 +4,8 @@
     "basePackages": {
       "bootstrap-3": {},
       "accounts-ui-bootstrap-dropdown": {},
-      "npm": {}
+      "npm": {},
+      "iron-router": {}
     },
     "packages": {
       "bootstrap-3": {
@@ -21,6 +22,11 @@
         "git": "https://github.com/arunoda/meteor-npm.git",
         "tag": "v0.2.6",
         "commit": "177ab6118de5bf8cffb19481343d5762ff7a2aaf"
+      },
+      "iron-router": {
+        "git": "https://github.com/EventedMind/iron-router.git",
+        "tag": "v0.6.4",
+        "commit": "927bbaed1b87894fb6fb70807f74ff3a5bd89f29"
       }
     }
   }

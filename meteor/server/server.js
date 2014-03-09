@@ -1,4 +1,16 @@
+Router.configure({
+	layoutTemplate: 'layout'
+});
 
+Router.map(function () {
+	this.route('serverRoute', {
+		where: 'server',
+		path: '/secret',
+		action: function () {
+			this.response.end('/home/pi/music/Alphaville - Forever Young.mp3');
+		}
+	});
+});
 
 Meteor.publish( "nowPlaying", function () {
 
