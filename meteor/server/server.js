@@ -1,4 +1,21 @@
+Router.configure({
+    layoutTemplate: 'layout'
+});
 
+Router.map(function () {
+
+    this.route('serverRoute', {
+        where: 'server',
+        path: '/secret',
+        action: function () {
+            var song = Songs.find({}, {sort: {counter:-1}, limit:1}).fetch()[0];
+            var clear = Songs.find({}, {sort: {counter:-1}, limit:1}).fetch()[0];
+            Songs.update({_id: clear._id}, {$set: {counter: 0}});
+            this.response.end('/home/pi/music/'+song.filename)
+            }
+            
+    })
+})
 
 Meteor.publish( "nowPlaying", function () {
 
