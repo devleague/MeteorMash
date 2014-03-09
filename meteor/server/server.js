@@ -9,8 +9,8 @@ Router.map(function () {
         path: '/secret',
         action: function () {
             var song = Songs.find({}, {sort: {counter:-1}, limit:1}).fetch()[0];
-            var clear = Songs.find({}, {sort: {counter:-1}, limit:1}).fetch()[0];
-            Songs.update({_id: clear._id}, {$set: {counter: 0}});
+            Songs.update({"status": "now"}, { $set: {"status": "none"}})
+            Songs.update({_id: song._id}, {$set: {counter: 0, status: "now"}});
             this.response.end('/home/pi/music/'+song.filename)
             }
             

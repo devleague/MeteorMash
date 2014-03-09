@@ -90,6 +90,10 @@ function noLocation () {
 
 // }
 
+Template.currentSong.current = function () {
+  return Songs.findOne({status: "now"});
+}
+
 // Renders published songs //
 Template.songList.songs = function () {
 
@@ -97,6 +101,7 @@ Template.songList.songs = function () {
   return Songs.find( {}, { sort: { counter: -1 } });
 
 };// ends Template.songList.songs
+
 
 
 // Renders Pagination for the next button //

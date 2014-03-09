@@ -8,3 +8,12 @@
 .nowPlaying{
 	background-color: red;
 }
+
+.current {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.currentSong {
+    padding-bottom: 2em;
+}
