@@ -1,16 +1,23 @@
 Router.configure({
-	layoutTemplate: 'layout'
+
+    layoutTemplate: 'layout'
 });
 
 Router.map(function () {
-	this.route('serverRoute', {
-		where: 'server',
-		path: '/secret',
-		action: function () {
-			this.response.end('/home/pi/music/Alphaville - Forever Young.mp3');
-		}
-	});
-});
+
+    this.route('serverRoute', {
+        where: 'server',
+        path: '/secret',
+        action: function () {
+            var song = Songs.find({}, {sort: {counter:-1}, limit:1}).fetch()[0];
+            Songs.update({"status": "now"}, { $set: {"status": "none"}})
+            Songs.update({_id: song._id}, {$set: {counter: 0, status: "now"}});
+            this.response.end('/home/pi/music/'+song.filename)
+            }
+            
+    })
+})
+
 
 Meteor.publish( "nowPlaying", function () {
 

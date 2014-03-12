@@ -5,18 +5,19 @@
 </head>
 
 <body>
-  
+  <div class="container">
+  {{> currentSong}}
   {{> navbar}}
   {{> songList}}
   {{> where}}
-
+  </div>
 
 </body>
   
 
 <template name="songList">
   
-  <div class="container">
+
     <div class="row text-center" >
       <ul id="songList">
         {{#each songs}}
@@ -31,16 +32,21 @@
       <li class="next"><a href="#">{{nextText}}&rarr; </a></li>
     </ul>
 
-  </div>
   <!-- {{!--API KEY for GMaps AIzaSyAqdbtbbf_utGmNIWecy6K156be9BmMapE --}} -->
 </template>
 
 <template name="song">
   <div class="song">
-    <li class='{{is_selected}}'>{{name}}</li>
-    <p>{{counter}}</p>
+    <li class='{{is_selected}}'>{{artist}} - {{title}}</li>
     <button class='upvote' id='{{_id}}'>Upvote!</button>
+    {{counter}} 
     <button class='downvote' id='downvote_{{_id}}'>Downvote!</button>
+  </div>
+</template>
+
+<template name="currentSong">
+  <div class="currentSong text-center">
+    <span class="current">Now Playing: {{current.artist}} - {{current.title}}</span>
   </div>
 </template>
 
