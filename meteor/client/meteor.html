@@ -55,13 +55,15 @@
 
 <template name="currentSong">
   <div class="currentSong text-center">
-    <span class="current">Now Playing: <br />{{current.artist}} - {{current.title}}</span>
+    <span class='header'>Now Playing</span> <br />
+    <span class="current">{{current.artist}} - {{current.title}}</span>
   </div>
 </template>
 
 <template name="leaderSong">
   <div class="leaderSong text-center">
-    <span class="leader"><br />In The Lead: <br />{{leader.artist}} - {{leader.title}}</span>
+    <span class='header'>In The Lead</span> <br />
+    <span class="leader">{{leader.artist}} - {{leader.title}}</span>
   </div>
 </template>
 

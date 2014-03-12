@@ -15,8 +15,8 @@ html {
 
 .current,
 .leader {
-    font-size: 1.5em;
-    font-weight: bold;
+    font-size: 1.4em;
+    font-style: italic;
 }
 
 .currentSong {
@@ -38,7 +38,7 @@ button {
     text-align: left;
     display: inline-block;
     width: 400px;
-    vertical-align: top;
+    vertical-align: middle;
     padding: 0px 10px;
 }
 .count {
@@ -78,4 +78,10 @@ button {
 
 .title {
     font-style: italic;
+}
+
+.header {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-decoration: underline;
 }
