@@ -17,3 +17,39 @@
 .currentSong {
     padding-bottom: 2em;
 }
+
+./*container-fluid .navbar-brand .navbar-header .collapse{
+	display: inline;
+	display: inline-block!important;
+	margin-right: 0;
+	padding-right: 0;
+	list-style:none;
+}*/
+
+	.navbar > .container .navbar{
+	    /*text-align: center;*/
+	}
+	.navbar-header .navbar .navbar-nav,.navbar .navbar-nav #text> li {
+	    float: none;
+	    display: inline-block;
+	}
+	.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+	    float: none;
+	    display: block!important;
+	    margin: auto;
+	    width: 200px;
+	    clear: none;
+	    
+	    margin-bottom: -20px;
+	    font-family: "Courier New", Courier, monospace;
+
+	}
+	a {
+		font-family: "Courier New", Courier, monospace;
+		padding-top: 60px;
+		padding-bottom: 60px;
+	}
+#text {
+	float: center;
+
+}
