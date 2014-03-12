@@ -55,7 +55,8 @@ Meteor.publish( "nowPlaying", function () {
 
 Meteor.publish( "songs" , function ( songcursor ) {
 	
-	return Songs.find( {},{ limit : 10, skip : songcursor , sort : { counter : -1 } });
+	return Songs.find( {},{ sort : { counter : -1 } });
+ // return Songs.find( {},{ limit : 10, skip : songcursor , sort : { counter : -1 } });
 
 });
 
