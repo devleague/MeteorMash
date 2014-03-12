@@ -10,6 +10,7 @@
   {{> navbar}}
   {{> songList}}
   {{> where}}
+  {{> leaderSong}}
   </div>
 
 </body>
@@ -27,26 +28,40 @@
         {{/each}}
       </ul>
     </div>
-    <ul class="pager">
+ <!--    <ul class="pager">
       <li class="previous"><a href="#">{{previousText}}&larr; </a></li>
       <li class="next"><a href="#">{{nextText}}&rarr; </a></li>
-    </ul>
+    </ul> -->
 
   <!-- {{!--API KEY for GMaps AIzaSyAqdbtbbf_utGmNIWecy6K156be9BmMapE --}} -->
 </template>
 
 <template name="song">
   <div class="song">
-    <li class='{{is_selected}}'>{{artist}} - {{title}}</li>
-    <button class='upvote' id='{{_id}}'>Upvote!</button>
+    <li class='track'><span class='artist'>{{artist}}</span><br />
+    <span class='title'>{{title}}</span></li>
+    <span class="count">
     {{counter}} 
-    <button class='downvote' id='downvote_{{_id}}'>Downvote!</button>
+  </span>
+    <span class='votes'>
+    <span class="upvote glyphicon glyphicon-chevron-up" id='{{_id}}'></span><br />
+    <span class="downvote glyphicon glyphicon-chevron-down" id='downvote_{{_id}}'></span>
+  </span>
+<!--     <button class='upvote glyphicon' id='{{_id}}'>Upvote!</button>
+    <button class='downvote' id='downvote_{{_id}}'>Downvote!</button> -->
+    </span>
   </div>
 </template>
 
 <template name="currentSong">
   <div class="currentSong text-center">
-    <span class="current">Now Playing: {{current.artist}} - {{current.title}}</span>
+    <span class="current">Now Playing: <br />{{current.artist}} - {{current.title}}</span>
+  </div>
+</template>
+
+<template name="leaderSong">
+  <div class="leaderSong text-center">
+    <span class="leader"><br />In The Lead: <br />{{leader.artist}} - {{leader.title}}</span>
   </div>
 </template>
 
@@ -70,12 +85,12 @@
 
       {{!-- Collect the nav links, forms, and other content for toggling --}}
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <form class="navbar-form navbar-left" role="search" id="loginform" action="action">
+   <!--      <form class="navbar-form navbar-left" role="search" id="loginform" action="action">
           <div class="form-group">
             <input type="text" class="form-control" id="songName" placeholder="Add Request!">
             <button id="addSong" type="submit" class="btn btn-default">Click</button>
           </div>
-        </form>
+        </form> -->
 
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#">{{> userinfo}}</a></li>

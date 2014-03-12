@@ -90,9 +90,14 @@ function noLocation () {
 
 // }
 
-Template.currentSong.current = function () {
-  return Songs.findOne({status: "now"});
-}
+  Template.currentSong.current = function () {
+    return Songs.findOne({status: "now"});
+  }
+
+    Template.leaderSong.leader = function () {
+    return Songs.find({}, {sort: {counter:-1}, limit:1}).fetch()[0];
+  }
+
 
 // Renders published songs //
 Template.songList.songs = function () {
@@ -105,29 +110,29 @@ Template.songList.songs = function () {
 
 
 // Renders Pagination for the next button //
-Template.songList.nextText = function () {
+// Template.songList.nextText = function () {
 
-  // Shows next 20 for user navigation //
-  return ( Number( Session.get( 'songCursor' ) ) + 10 ) + " - " + ( Number( Session.get( 'songCursor' )) + 20);
+//   // Shows next 20 for user navigation //
+//   return ( Number( Session.get( 'songCursor' ) ) + 10 ) + " - " + ( Number( Session.get( 'songCursor' )) + 20);
 
-};// ends Template.songList.nextText
+// };// ends Template.songList.nextText
 
 
 // Renders pagination for previous button //
-Template.songList.previousText = function () {
+// Template.songList.previousText = function () {
 
-  // Checks if the collection is empty //
-  if( Number( Session.get( "songCursor" )) < 10) {
+//   // Checks if the collection is empty //
+//   if( Number( Session.get( "songCursor" )) < 10) {
     
-    // show nothing //
-    return '';
+//     // show nothing //
+//     return '';
 
-  }
+//   }
 
-  // else if there is, show the previous 10 //
-  return ( Number( Session.get( 'songCursor' )) - 10) + " - " + ( Number( Session.get( 'songCursor' ) ));
+//   // else if there is, show the previous 10 //
+//   return ( Number( Session.get( 'songCursor' )) - 10) + " - " + ( Number( Session.get( 'songCursor' ) ));
 
-};// ends Template.songList.previousText
+// };// ends Template.songList.previousText
 
 
 // Even listener for button click //
@@ -215,7 +220,7 @@ Template.song.events ({
   },
 
   // When clicked counter increases //
-  'click button.upvote' : function(event, template){
+  'click span.upvote' : function(event, template){
 
     // updates mongo //
     Songs.upsert (
@@ -242,7 +247,7 @@ Template.song.events ({
   },
   
   // When downvoted decrease counter //
-  'click button.downvote' : function(event, template) {
+  'click span.downvote' : function(event, template) {
 
     // Downvoted removes song from mongo //
     if ( this.counter <= -9 ) {
