@@ -58,31 +58,6 @@ Meteor.publish( "songs" , function ( songcursor ) {
 
 });
 
-// Meteor.publish("counts",function(){
-// 	var self = this;
-// 	var count = Meteor.uuid();
-// 	var count = Songs.find().count();
-// 	self.set('count',{count: count});
-
-// 	var handle = Songs.find().observe({
-// 		added: function (document) {
-// 			count++;
-// 			self.set('count', {count: count});
-// 			self.flush();
-// 		}, // Use either added() OR(!) addedAt()
-// 		removed: function (oldDocument) {
-// 			count--;
-// 			self.set('count', {count: count});
-// 			self.flush();
-// 		}, // Use either removed() OR(!) removedAt()
-// 	});
-
-// 	self.complete();
-// 	self.flush();
-// 	self.onStop(function () {
-// 		handle.stop();
-// 	});
-// });
 
 Meteor.methods({
     checkGeo: function(){

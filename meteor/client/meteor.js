@@ -13,41 +13,9 @@ Meteor.autorun(function(){
 // On start up watches songlist and gets geo-location //
 Meteor.startup (function() {
 
-  // Session.set('loc','?');
-  // var output;
-  // output = Session.get('loc');
-  // navigator.geolocation.getCurrentPosition(foundLocation, noLocation);
-
   // Cursor of song collection //
   var songList = Songs.find( {}, {sort: { counter:-1 } });
   
-  // songList.observe ({
-    
-  //   added: function (document) {
-
-  //   }, // Use either added() OR(!) addedAt()
-
-  //   removed: function (oldDocument) {
-
-  //   }, // Use either removed() OR(!) removedAt()
-
-  //   movedTo: function (document, fromIndex, toIndex, before) {
-
-  //     if (toIndex == 0) {
-
-  //       Songs.update( { _id : document._id }, { $set : { "nowPlaying" : true } }, function (err) {
-          
-  //         console.log(err);
-
-  //       });
-
-  //       console.log(document);
-  //     }
-
-  //   }
-
-  // });
-
 });// ends meteor.startup
 
 
@@ -86,53 +54,22 @@ function noLocation () {
 
 }
 
-// Template.count.counter = function(){
 
-// }
+Template.currentSong.current = function () {
+  return Songs.findOne({status: "now"});
+}
 
-  Template.currentSong.current = function () {
-    return Songs.findOne({status: "now"});
-  }
-
-    Template.leaderSong.leader = function () {
-    return Songs.find({}, {sort: {counter:-1}, limit:1}).fetch()[0];
-  }
+Template.leaderSong.leader = function () {
+  return Songs.find({}, {sort: {counter:-1}, limit:1}).fetch()[0];
+}
 
 
 // Renders published songs //
 Template.songList.songs = function () {
 
-
   return Songs.find( {}, { sort: { counter: -1 } });
 
 };// ends Template.songList.songs
-
-
-
-// Renders Pagination for the next button //
-// Template.songList.nextText = function () {
-
-//   // Shows next 20 for user navigation //
-//   return ( Number( Session.get( 'songCursor' ) ) + 10 ) + " - " + ( Number( Session.get( 'songCursor' )) + 20);
-
-// };// ends Template.songList.nextText
-
-
-// Renders pagination for previous button //
-// Template.songList.previousText = function () {
-
-//   // Checks if the collection is empty //
-//   if( Number( Session.get( "songCursor" )) < 10) {
-    
-//     // show nothing //
-//     return '';
-
-//   }
-
-//   // else if there is, show the previous 10 //
-//   return ( Number( Session.get( 'songCursor' )) - 10) + " - " + ( Number( Session.get( 'songCursor' ) ));
-
-// };// ends Template.songList.previousText
 
 
 // Even listener for button click //
@@ -161,27 +98,6 @@ Template.navbar.events ({
   }
 
 });// ends Template.navbar.events
-
-// Template.register.events({
-//   'submit #register-form': function(event, template){
-//     event.preventDefault();
-//     var partyName = template.find('#account-partyName').value;
-//     var partyPass = template.find('#account-partyPass').value;
-//     var partyEmail = template.find('#account-email').value;
-//     Accounts.createUser({
-//       username: partyName,
-//       password: partyPass,
-//       email: partyEmail,
-//     }, function (error) {
-//       if(error){
-//         //inform the user failed
-//       }else{
-
-//       }
-//     });
-//     return false;
-//   }
-// });
 
 // Event listener to render songs for pagination //
 Template.songList.events ({
