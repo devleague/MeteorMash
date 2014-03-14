@@ -19,41 +19,41 @@ Router.map(function () {
 
 Meteor.publish( "nowPlaying", function () {
 
-	var showAllSongs = Songs.find();
+  var showAllSongs = Songs.find();
 
-	showAllSongs.observe ({
+  showAllSongs.observe ({
 
-		added : function (document) {
+    added : function (document) {
 
-		},
+    },
 
-		removed : function(oldDocument) {
+    removed : function(oldDocument) {
 
-		},
+    },
 
-		movedTo : function (document, fromIndex, toIndex, before) {
+    movedTo : function (document, fromIndex, toIndex, before) {
 
-			if ( toIndex == 0 ) {
-		
-				Songs.update( { _id : document._id }, { $set : { "nowPlaying" : true } }, function (err) {
+      if ( toIndex == 0 ) {
+    
+        Songs.update( { _id : document._id }, { $set : { "nowPlaying" : true } }, function (err) {
 
-					console.log(err);
+          console.log(err);
 
-				});
+        });
 
-				console.log( document );
-			
-			}
-		
-		}
-	
-	});
+        console.log( document );
+      
+      }
+    
+    }
+  
+  });
 
 });// ends Meteor.publish
 
 Meteor.publish( "songs" , function ( songcursor ) {
-	
-	return Songs.find( {},{ sort : { counter : -1 } });
+  
+  return Songs.find( {},{ sort : { counter : -1 } });
  // return Songs.find( {},{ limit : 10, skip : songcursor , sort : { counter : -1 } });
 
 });

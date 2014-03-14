@@ -3,15 +3,28 @@ html {
     font-family: 'Open Sans', sans-serif !important;
 }
 
+body {
+    padding: 0px !important;
+}
+
+#navbar {
+    background-color: black;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    vertical-align: middle;
+    font-size: 3em;
+    color: white;
+}
 #songList{
-	height: 600px;
-	overflow-y: auto;
-	overflow-x: hidden;
+    height: 600px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 
 .nowPlaying{
-	background-color: red;
+    background-color: red;
 }
 
 .current,
@@ -57,7 +70,7 @@ button {
 .upvote, .downvote {
     font-size: 3em;
     width: 100px;
-
+    padding: 10px;
 }
 
 .upvote:hover,
@@ -65,13 +78,9 @@ button {
     cursor: pointer;
 }
 
-.upvote {
-    padding: 10px;
-}
-
 .song {
     border-bottom: 2px solid black;
-    height: 120px;
+    height: 130px;
 }
 
 .container {
