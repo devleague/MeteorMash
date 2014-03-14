@@ -4,10 +4,11 @@ html {
 }
 
 #songList{
-	height: 516px;
+	height: 600px;
 	overflow-y: auto;
 	overflow-x: hidden;
 }
+
 
 .nowPlaying{
 	background-color: red;
@@ -15,17 +16,21 @@ html {
 
 .current,
 .leader {
-    font-size: 1.4em;
+    font-size: 1.5em;
     font-style: italic;
 }
 
 .currentSong {
-    padding-bottom: 2em;
+    margin-bottom: 1.5em;
+}
+
+.leaderSong {
+    margin-top: 1.5em;
 }
 
 .votes {
     display: inline-block;
-    width: 50px;
+    width: 100px;
     vertical-align: top;
 }
 
@@ -37,20 +42,21 @@ button {
     font-size: 1.4em;
     text-align: left;
     display: inline-block;
-    width: 400px;
-    vertical-align: middle;
-    padding: 0px 10px;
+    width: 350px;
+    margin-top: 40px;
 }
 .count {
-    font-size: 2em;
+    font-size: 3em;
     display: inline-block;
     width: 50px;
     vertical-align: top;
-    padding-top: 15px;
+    margin-right: 20px;
+    line-height: 120px;
 }
 
 .upvote, .downvote {
-    font-size: 1.5em;
+    font-size: 3em;
+    width: 100px;
 
 }
 
@@ -60,17 +66,27 @@ button {
 }
 
 .upvote {
-    margin-bottom: 10px;
+    padding: 10px;
 }
 
 .song {
     border-bottom: 2px solid black;
+    height: 120px;
 }
 
 .container {
     width: 600px;
-    margin: auto;
+    padding: 10px;
 }
+
+/*.left-content {
+    width: 15%;
+    float: left;
+}
+
+.right-content {
+    margin-left: 35%;
+}*/
 
 .artist {
     font-weight: bold;
@@ -88,5 +104,15 @@ button {
 
 a#meteormash {
     font-size: 2.5em;
+    color: white;
+}
+
+#footer {
+    background-color: black;
+    height: 50px;
+    margin-top: 1.5em;
+    text-align: center;
+    line-height: 50px;
+    vertical-align: middle;
     color: white;
 }

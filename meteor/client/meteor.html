@@ -7,12 +7,13 @@
 
 <body>
   <div class="container">
-  {{> currentSong}}
-  {{> navbar}}
-  {{> songList}}
-  {{> where}}
-  {{> leaderSong}}
+      {{> currentSong}}
+      {{> navbar}}
+      {{> songList}}
+      {{> where}}
+      {{> leaderSong}}
   </div>
+  {{> footer}}
 
 </body>
 
@@ -55,6 +56,11 @@
     <br />
     <span class="current">
       {{current.artist}} - {{current.title}}
+    </span>
+  </div>
+  <div class="currentSong text-center">
+    <span class='header'>
+      Song List
     </span>
   </div>
 </template>
@@ -109,6 +115,14 @@
         </div>
       </div>
     </div>
+  </div>
+</template>
+
+
+<template name="footer">
+  <div id="footer">
+    <p>Created by the students of DevLeague</p>
+
   </div>
 </template>
 

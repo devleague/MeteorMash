@@ -138,6 +138,7 @@ Template.song.events ({
   // When clicked counter increases //
   'click span.upvote' : function(event, template){
 
+
     // updates mongo //
     Songs.upsert (
 
@@ -165,42 +166,33 @@ Template.song.events ({
   // When downvoted decrease counter //
   'click span.downvote' : function(event, template) {
 
-    // Downvoted removes song from mongo //
-    if ( this.counter <= -9 ) {
+    
+    var checkCounter = Songs.findOne({"_id" : this._id});
 
-      // mongo remove by id //
-      Songs.remove(this._id);
+    if (checkCounter.counter !== -10){
+    // Updates mongo //
+      Songs.upsert(
 
-    }
-
-    else
-
-      {
+        { "_id" : this._id },
         
-        // Updates mongo //
-        Songs.upsert(
+        // Decrease vote counter //
+        { $inc : { "counter" : -1 } },
+        
+        // Handle errors //
+        function (err) {
 
-          { "_id" : this._id },
-          
-          // Decrease vote counter //
-          { $inc : { "counter" : -1 } },
-          
-          // Handle errors //
-          function (err) {
+          if ( typeof err !== 'undefined' ) {
 
-            if ( typeof err !== 'undefined' ) {
-
-              console.log(err);
-              
-            }
-
+            console.log(err);
+            
           }
 
-        );
+        }
 
-      }
-
+      );
     }
+
+  }
 
 });// ends Template.songs.events
 
