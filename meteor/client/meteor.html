@@ -22,13 +22,13 @@
 
 <template name="songList">
     <div class="row text-center" >
-      <ul id="songList">
+      <ol id="songList">
         {{#each songs}}
           {{> song}}
         {{else}}
            <p id="noSongs"> No songs in queue for party! </p>
         {{/each}}
-      </ul>
+      </ol>
     </div>
 </template>
 
@@ -43,9 +43,11 @@
       {{counter}} 
     </span>
     <span class='votes'>
-      <span class="upvote glyphicon glyphicon-chevron-up" id='{{_id}}'></span>
+      <!-- <span class="upvote glyphicon glyphicon-chevron-up" id='{{_id}}'></span> -->
+      <button class="upvote" id="{{_id}}">Upvote</button>
       <br />
-      <span class="downvote glyphicon glyphicon-chevron-down" id='downvote_{{_id}}'></span>
+      <!-- <span class="downvote glyphicon glyphicon-chevron-down" id='downvote_{{_id}}'></span> -->
+      <button class="downvote" id="downvote_{{_id}}">Downvote</button>
     </span>
   </div>
 </template>

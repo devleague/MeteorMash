@@ -45,6 +45,7 @@ body {
     display: inline-block;
     width: 100px;
     vertical-align: top;
+    line-height: 60px;
 }
 
 button {
@@ -68,9 +69,11 @@ button {
 }
 
 .upvote, .downvote {
-    font-size: 3em;
+    font-size: 1em;
     width: 100px;
     padding: 10px;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .upvote:hover,

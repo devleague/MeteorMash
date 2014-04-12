@@ -123,6 +123,30 @@ Template.songList.events ({
 });// ends Template.songList.events
 
 
+// Event listener to render songs for pagination //
+Template.songList.events ({
+
+  // Show previous 10 songs //
+  'click .previous': function (evt, tmpl) {
+
+    if ( Number( Session.get( 'songCursor' ) ) > 9 ) {
+       
+       Session.set('songCursor', Number( Session.get( 'songCursor' ) ) - 10);
+    
+    }
+
+  },
+
+  // Show next 10 songs //
+  'click .next' : function (evt, tmpl) {
+
+    Session.set( 'songCursor' , Number( Session.get( 'songCursor' ) + 10 ));
+
+  }
+
+});// ends Template.songList.events
+
+
 // Listening for upvotes //
 Template.song.events ({
 
@@ -136,7 +160,7 @@ Template.song.events ({
   },
 
   // When clicked counter increases //
-  'click span.upvote' : function(event, template){
+  'click button.upvote' : function(event, template){
 
 
     // updates mongo //
@@ -164,7 +188,7 @@ Template.song.events ({
   },
   
   // When downvoted decrease counter //
-  'click span.downvote' : function(event, template) {
+  'click button.downvote' : function(event, template) {
 
     
     var checkCounter = Songs.findOne({"_id" : this._id});
