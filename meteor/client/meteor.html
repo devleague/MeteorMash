@@ -13,7 +13,6 @@
     {{> currentSong}}
     {{> songList}}
     {{> where}}
-    {{> leaderSong}}
   </div>
     {{> footer}}
 
@@ -21,7 +20,7 @@
 
 
 <template name="songList">
-    <div class="row text-center" >
+    <div class="text-center" >
       <ol id="songList">
         {{#each songs}}
           {{> song}}
@@ -35,49 +34,44 @@
 <template name="song">
   <div class="song">
     <li class='track'>
-      <span class='artist'>{{artist}}</span>
-      <br />
-      <span class='title'>{{title}}</span>
+      <h1 class='title'>{{title}}</h1>
+      <h2 class='artist'>{{artist}}</h2>
     </li>
-    <span class="count">
+    <div class="count">
       {{counter}} 
-    </span>
-    <span class='votes'>
-      <!-- <span class="upvote glyphicon glyphicon-chevron-up" id='{{_id}}'></span> -->
-      <button class="upvote" id="{{_id}}">Upvote</button>
-      <br />
-      <!-- <span class="downvote glyphicon glyphicon-chevron-down" id='downvote_{{_id}}'></span> -->
-      <button class="downvote" id="downvote_{{_id}}">Downvote</button>
-    </span>
+    </div>
+    <!-- <span class="upvote glyphicon glyphicon-chevron-up" id='{{_id}}'></span> -->
+    <button class="upvote" id="{{_id}}">+</button>
+    <!-- <span class="downvote glyphicon glyphicon-chevron-down" id='downvote_{{_id}}'></span> -->
+    <button class="downvote" id="downvote_{{_id}}">-</button>
   </div>
 </template>
 
 <template name="currentSong">
   <div class="currentSong text-center">
-    <span class='header'>
+    <h1 class='header'>
       Now Playing
-    </span>
-    <br />
-    <span class="current">
-      {{current.artist}} - {{current.title}}
-    </span>
-  </div>
-  <div class="currentSong text-center">
-    <span class='header'>
-      Song List
-    </span>
+    </h1>
+    <h1 class="currentTrack">
+      {{current.title}}
+    </h1>
+    <h1 class="currentArtist">
+      {{current.artist}}
+    </h1>
   </div>
 </template>
 
 <template name="leaderSong">
   <div class="leaderSong text-center">
-    <span class='header'>
+    <h1 class="leaderTrack">
+      {{leader.title}}
+    </h1>
+    <h1 class="leaderArtist">
+      {{leader.artist}}
+    </h1>
+    <h1 class='leaderHeader'>
       In The Lead
-    </span>
-    <br />
-    <span class="leader">
-      {{leader.artist}} - {{leader.title}}
-    </span>
+    </h1>
   </div>
 </template>
 

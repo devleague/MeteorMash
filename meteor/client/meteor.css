@@ -5,17 +5,30 @@ html {
 
 body {
     padding: 0px !important;
+    background-color: black;
+    width: 100%;
+    min-height: 100%;
+    font-family: 'Open Sans', sans-serif !important;
 }
 
 #navbar {
-    background-color: black;
+/*    background-color: black;*/
     height: 60px;
     text-align: center;
     line-height: 60px;
     vertical-align: middle;
-    font-size: 3em;
+    font-size: 2em;
+    width: 100%;
     color: white;
-}
+    background: #4c4c4c; /* Old browsers */
+    background: -moz-linear-gradient(top, #4c4c4c 0%, #595959 12%, #666666 25%, #474747 39%, #000000 50%, #0f0f0f 66%, #0a0a0a 84%, #000000 100%, #1c1c1c 100%, #2c2c2c 100%, #1c1c1c 100%, #2b2b2b 100%, #000000 101%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#4c4c4c), color-stop(12%,#595959), color-stop(25%,#666666), color-stop(39%,#474747), color-stop(50%,#000000), color-stop(66%,#0f0f0f), color-stop(84%,#0a0a0a), color-stop(100%,#000000), color-stop(100%,#1c1c1c), color-stop(100%,#2c2c2c), color-stop(100%,#1c1c1c), color-stop(100%,#2b2b2b), color-stop(101%,#000000)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #4c4c4c 0%,#595959 12%,#666666 25%,#474747 39%,#000000 50%,#0f0f0f 66%,#0a0a0a 84%,#000000 100%,#1c1c1c 100%,#2c2c2c 100%,#1c1c1c 100%,#2b2b2b 100%,#000000 101%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #4c4c4c 0%,#595959 12%,#666666 25%,#474747 39%,#000000 50%,#0f0f0f 66%,#0a0a0a 84%,#000000 100%,#1c1c1c 100%,#2c2c2c 100%,#1c1c1c 100%,#2b2b2b 100%,#000000 101%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #4c4c4c 0%,#595959 12%,#666666 25%,#474747 39%,#000000 50%,#0f0f0f 66%,#0a0a0a 84%,#000000 100%,#1c1c1c 100%,#2c2c2c 100%,#1c1c1c 100%,#2b2b2b 100%,#000000 101%); /* IE10+ */
+    background: linear-gradient(to bottom, #4c4c4c 0%,#595959 12%,#666666 25%,#474747 39%,#000000 50%,#0f0f0f 66%,#0a0a0a 84%,#000000 100%,#1c1c1c 100%,#2c2c2c 100%,#1c1c1c 100%,#2b2b2b 100%,#000000 101%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+    }
 #songList{
     height: 100%;
     overflow-y: auto;
@@ -27,53 +40,94 @@ body {
     background-color: red;
 }
 
-.current,
+.currentTrack,
 .leader {
-    font-size: 1.5em;
-    font-style: italic;
+    font-size: 1.4em;
+    color: white;
+    padding: 10px;
+
+}
+
+.currentArtist {
+    font-size: 1.2em;
+    color: #9D9D9D;
+    margin: 10px;
 }
 
 .currentSong {
-    margin-bottom: 1.5em;
+    text-align: center;
+}
+
+.header {
+    text-decoration: none !important;
+    text-transform: uppercase;
+    font-size: 1em !important;
+    margin: 10px 10px;
+}
+
+.leaderHeader {
+    display: inline-block;
+    float: left;
+    width: 30%;
+
+}
+
+.leaderSection {
+    display: inline-block;
+    width: 70%;
 }
 
 .leaderSong {
-    margin-top: 1.5em;
+    text-align: left;
+    background-color: #262626;
+}
+
+.leaderTrack {
+    font-size: 1.4em;
+    color: white;
+    padding: 10px;
+}
+
+.leaderArtist {
+    font-size: 1.2em;
+    color: #9D9D9D;
+    margin: 10px;
 }
 
 .votes {
-    display: inline-block;
-    width: 100px;
-    vertical-align: top;
-    line-height: 60px;
+
 }
 
 button {
-    width: 100px;
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 15%;
+    vertical-align: baseline;
+    background-color: gray;
+    font-family: 'Open Sans', sans-serif !important;
+    text-align: center;
+    -webkit-appearance: none;
 }
 
 .track {
     font-size: 1.4em;
     text-align: left;
     display: inline-block;
-    width: 350px;
-    margin-top: 40px;
+    width: 60%;
 }
 .count {
-    font-size: 3em;
+    width: 40px !important;
+    height: 40px !important;
+    background: purple;
     display: inline-block;
-    width: 50px;
-    vertical-align: top;
-    margin-right: 20px;
-    line-height: 120px;
+    font-size: 2.5em;
+    border-radius: 15%;
+    color: white;
 }
 
 .upvote, .downvote {
-    font-size: 1em;
-    width: 100px;
-    padding: 10px;
+    font-size: 2.5em;
     display: inline-block;
-    vertical-align: middle;
 }
 
 .upvote:hover,
@@ -82,13 +136,17 @@ button {
 }
 
 .song {
-    border-bottom: 2px solid black;
-    height: 130px;
+    border-bottom: 1px solid #191919;
+    border-top: 1px solid #555555;
+    width: 100%;
+    margin: 0px !important;
+    padding: 10px;
+    background-color: #262626;
 }
 
 .container {
-    width: 600px;
-    padding: 10px;
+    width: 100%;
+    padding: 0px !important;
     height: 95%;
 }
 
@@ -102,11 +160,13 @@ button {
 }*/
 
 .artist {
-    font-weight: bold;
+    font-size: .7em;
+    color: #656565;
 }
 
 .title {
-    font-style: italic;
+    font-size: .7em;
+    color: white;
 }
 
 .header {
