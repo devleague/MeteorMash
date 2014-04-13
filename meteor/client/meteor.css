@@ -17,7 +17,7 @@ body {
     text-align: center;
     line-height: 60px;
     vertical-align: middle;
-    font-size: 2em;
+    font-size: 2.5em;
     width: 100%;
     color: white;
     background: #4c4c4c; /* Old browsers */
@@ -40,29 +40,52 @@ body {
     background-color: red;
 }
 
-.currentTrack,
-.leader {
-    font-size: 1.4em;
+.currentTrack {
+    font-size: 2.5em;
     color: white;
     padding: 10px;
 
 }
 
+@media only screen and (min-width: 1000px) {
+    .currentTrack {
+        font-size: 1.4em;
+    }
+}
+
 .currentArtist {
-    font-size: 1.2em;
+    font-size: 2em;
     color: #9D9D9D;
     margin: 10px;
+}
+
+@media only screen and (min-width: 1000px) {
+    .currentArtist {
+        font-size: 1.2em;
+    }
 }
 
 .currentSong {
     text-align: center;
 }
 
+@media only screen and (min-width: 1000px) {
+    .currentSong {
+        width: 50%;
+    }
+}
+
 .header {
-    text-decoration: none !important;
     text-transform: uppercase;
-    font-size: 1em !important;
+    font-size: 1.5em;
     margin: 10px 10px;
+    color: #656565;
+}
+
+@media only screen and (min-width: 1000px) {
+    .header {
+        font-size: 1em;
+    }
 }
 
 .leaderHeader {
@@ -82,53 +105,70 @@ body {
     background-color: #262626;
 }
 
-.leaderTrack {
-    font-size: 1.4em;
-    color: white;
-    padding: 10px;
-}
-
-.leaderArtist {
-    font-size: 1.2em;
-    color: #9D9D9D;
-    margin: 10px;
-}
-
-.votes {
-
-}
-
 button {
     width: 40px !important;
     height: 40px !important;
     border-radius: 15%;
-    vertical-align: baseline;
+    vertical-align: middle;
     background-color: gray;
     font-family: 'Open Sans', sans-serif !important;
     text-align: center;
     -webkit-appearance: none;
+    margin: 0px;
+}
+
+@media only screen and (min-width: 1000px) {
+    button {
+        margin: 0px;
+    }
+}
+
+.buttonSection {
+    float: right;
+    margin-right: 10px;
 }
 
 .track {
-    font-size: 1.4em;
+    font-size: 2em;
     text-align: left;
     display: inline-block;
-    width: 60%;
+    width: 49%;
+}
+
+@media only screen and (min-width: 1000px) {
+    .track {
+        width: 68%;
+        font-size: 1.4em;
+    }
 }
 .count {
-    width: 40px !important;
+    width: 60px !important;
     height: 40px !important;
     background: purple;
     display: inline-block;
-    font-size: 2.5em;
+    font-size: 2.1em;
     border-radius: 15%;
     color: white;
+    vertical-align: middle;
+    text-align: right;
+
 }
 
-.upvote, .downvote {
-    font-size: 2.5em;
-    display: inline-block;
+@media only screen and (min-width: 1000px) {
+    .count {
+        padding: 0px;
+    }
 }
+
+
+
+.upvote, .downvote {
+    font-size: 1.5em;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
 
 .upvote:hover,
 .downvote:hover {
@@ -144,10 +184,22 @@ button {
     background-color: #262626;
 }
 
+@media only screen and (min-width: 1000px) {
+    .song {
+        width: 50%;
+    }
+}
+
 .container {
     width: 100%;
     padding: 0px !important;
     height: 95%;
+}
+
+@media only screen and (min-width: 1000px) {
+    .container {
+        margin: 0px 25% 0px 25%;
+    }
 }
 
 /*.left-content {
@@ -167,12 +219,6 @@ button {
 .title {
     font-size: .7em;
     color: white;
-}
-
-.header {
-    font-size: 1.5em;
-    font-weight: bold;
-    text-decoration: underline;
 }
 
 a#meteormash {

@@ -37,13 +37,15 @@
       <h1 class='title'>{{title}}</h1>
       <h2 class='artist'>{{artist}}</h2>
     </li>
-    <div class="count">
-      {{counter}} 
+    <div class="buttonSection">
+      <div class="count">
+        {{counter}} 
+      </div>
+      <!-- <span class="upvote glyphicon glyphicon-chevron-up" id='{{_id}}'></span> -->
+      <button class="upvote" id="{{_id}}">+</button>
+      <!-- <span class="downvote glyphicon glyphicon-chevron-down" id='downvote_{{_id}}'></span> -->
+      <button class="downvote" id="downvote_{{_id}}">-</button>
     </div>
-    <!-- <span class="upvote glyphicon glyphicon-chevron-up" id='{{_id}}'></span> -->
-    <button class="upvote" id="{{_id}}">+</button>
-    <!-- <span class="downvote glyphicon glyphicon-chevron-down" id='downvote_{{_id}}'></span> -->
-    <button class="downvote" id="downvote_{{_id}}">-</button>
   </div>
 </template>
 

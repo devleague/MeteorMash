@@ -7,11 +7,9 @@ standard-app-packages
 insecure
 preserve-inputs
 http
-bootstrap-3
 accounts-ui-bootstrap-dropdown
 npm
 accounts-base
 
-bootstrap
 
 iron-router
